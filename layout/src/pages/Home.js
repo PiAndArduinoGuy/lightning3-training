@@ -12,6 +12,18 @@ export default Blits.Component('Home', {
     	h="1080"
     	color="#1e293b"
     >
+    	<Text
+    		:content="$currentTitle"
+    		x="190"
+    		size="90"
+    	/>
+    	<Text
+    		:content="$currentDescription"
+    		x="190"
+    		y="250"
+    		size="45"
+    		wordwrap="1200"
+    	/>
     	<Element
     		ref="rowContainer"
     		:y.transition="{value: $containerY, duration: 500}"
@@ -61,12 +73,19 @@ export default Blits.Component('Home', {
           {title: 'C5', description: 'C5 description', color:"#ff00ff"},
         ]
       }],
-      containerY: 720
+      containerY: 720,
+      currentTitle:'', 
+      currentDescription: ''
     }
   },
   hooks: {
     ready() {
       this.$trigger('focused')
+      this.$listen('mainContentChange', (data) => {
+        console.log(data);
+        this.currentTitle = data.title
+        this.currentDescription = data.description
+      })
     }
   },
   watch : {
