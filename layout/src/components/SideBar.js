@@ -20,6 +20,7 @@ export default Blits.Component('SideBar', {
     			index="$index"
     			key="$icon.id"
     			ref="icon"
+    			path="$icon.path"
     		/>
     	</Element>
     </Element>
@@ -27,11 +28,12 @@ export default Blits.Component('SideBar', {
   state() {
     return {
         icons: [
-        {name: 'search', id: 78},
-        {name: 'home', id: 37},
-        {name: 'list', id:19},
-        {name: 'movie', id: 43},
-        {name: 'sport', id:67}],
+            {name: 'search', path:'/profile', id: 78},
+            {name: 'home', path: '/', id: 37},
+            {name: 'list', id:19},
+            {name: 'movie', id: 43, path: '/films'},
+            {name: 'sport', id:67}
+        ],
         focused: 0
     }
   },

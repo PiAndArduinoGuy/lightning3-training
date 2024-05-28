@@ -24,7 +24,7 @@ export default Blits.Component('Icon', {
     	/>
     </Element>
   `,
-  props: ['icon', 'index'],
+  props: ['icon', 'index', 'path'],
   state() {
     return {
         baseIcon: `assets/icons/${this.icon}.png`,
@@ -52,10 +52,13 @@ export default Blits.Component('Icon', {
         }
     }
   },
-  input: {
+  input: {  
     right() {
         this.sideBarLostFocus = true
         this.$emit('focusRows')
+    },
+    enter() {
+        this.$router.to(this.path)
     }
   }
 })
