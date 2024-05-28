@@ -23,6 +23,14 @@ export default Blits.Component('Home', {
     		y="250"
     		size="45"
     		wordwrap="1200"
+    		font="lato"
+        style="italics" <!-- if supported by the font chossen --> 
+    		weight="bold" 
+    		maxlines="5"
+        textoverflow="...[click to see more]"
+        align="right"
+        letterspacing="10"
+        lineheight="80"
     	/>
     	<Element
     		ref="rowContainer"
@@ -75,16 +83,21 @@ export default Blits.Component('Home', {
       }],
       containerY: 720,
       currentTitle:'', 
-      currentDescription: ''
+      currentDescription: '',
+      lorem: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut quasi ipsum, quos nobis veritatis itaque dignissimos explicabo dolore porro. Voluptatibus, maiores. Delectus, maxime? Autem quaerat debitis, accusantium facilis nam quis.'
     }
   },
   hooks: {
     ready() {
       this.$trigger('focused')
       this.$listen('mainContentChange', (data) => {
-        console.log(data);
+
         this.currentTitle = data.title
-        this.currentDescription = data.description
+        this.currentDescription = `${data.description} ${this.lorem}`
+      })
+
+      this.$listen('focusRows', () => {
+        this.trigger("focused")
       })
     }
   },
